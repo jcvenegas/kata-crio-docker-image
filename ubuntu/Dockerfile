@@ -41,10 +41,10 @@ RUN make install
 RUN make install.config
 RUN make install.systemd
 
-RUN tree "${DESTDIR}"
+RUN tree  "${DESTDIR}"
 
-RUN sed -i "s#/usr/local#${DESTDIR}#g" "${DESTDIR}/lib/systemd/system/cri-o.service"
-RUN cat "${DESTDIR}/lib/systemd/system/cri-o.service"
+RUN sed -i "s#/usr/local#${PREFIX}#g" "${PREFIX}/lib/systemd/system/cri-o.service"
+RUN cat "${PREFIX}/lib/systemd/system/cri-o.service"
 RUN mkdir -p "${DESTDIR}/etc/containers"
 RUN install -m0444 test/policy.json "${DESTDIR}/etc/containers/"
 
