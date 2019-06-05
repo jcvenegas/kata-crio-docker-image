@@ -34,6 +34,7 @@ WORKDIR /cri-o
 RUN git checkout $CRIO_VERSION
 RUN make
 RUN make install
+RUN make install.config
 RUN make install.systemd
 RUN apt-get install -y tree
 RUN tree /tmp/crio/opt/kata
