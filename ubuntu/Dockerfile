@@ -41,7 +41,9 @@ RUN tree /tmp/crio/opt/kata
 RUN sed -i 's/\/usr\/local/\/opt\/kata/g' /tmp/crio/opt/kata/lib/systemd/system/cri-o.service
 RUN cat /tmp/crio/opt/kata/lib/systemd/system/cri-o.service
 RUN ls /tmp/crio/opt/kata/bin/crio -la
+RUN mkdir -p "${DESTDIR}/etc/containers"
+RUN install -m0444 test/policy.json "${DESTDIR}/etc/containers/"
 
 FROM scratch
-WORKDIR /root/
+WORKDIR /
 COPY --from=builder /tmp/crio .
