@@ -50,4 +50,4 @@ RUN install -m0444 test/policy.json "${DESTDIR}/etc/containers/"
 
 FROM scratch
 WORKDIR /
-COPY --from=builder /tmp/crio .
+COPY --from=builder "${DESTDIR}" .
