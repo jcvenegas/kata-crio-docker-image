@@ -41,6 +41,6 @@ RUN sed -i 's/\/usr\/local/\/opt\/kata/g' /tmp/crio/opt/kata/lib/systemd/system/
 RUN cat /tmp/crio/opt/kata/lib/systemd/system/cri-o.service
 RUN ls /tmp/crio/opt/kata/bin/crio -la
 
-FROM alpine:latest
+FROM scratch
 WORKDIR /root/
 COPY --from=builder /tmp/crio .
