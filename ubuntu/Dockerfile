@@ -47,4 +47,4 @@ RUN cd "${DESTDIR}" && tree
 
 FROM scratch
 WORKDIR /
-COPY --from=builder "/opt/crio" .
+COPY --from=builder "/opt/crio" /crio-rootfs
