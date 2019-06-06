@@ -43,15 +43,8 @@ RUN make install.systemd
 RUN mkdir -p "${DESTDIR}/etc/containers"
 RUN install -m0444 test/policy.json "${DESTDIR}/etc/containers/"
 
-RUN tree  "${DESTDIR}"
-
-RUN sed -i "s#/usr/local#${PREFIX}#g" "${PREFIX}/lib/systemd/system/cri-o.service"
-RUN sed -i "s#/usr/local/libexec/crio#${PREFIX}/libexec/crio#g" "${DESTDIR}/etc/crio/crio.conf"
-RUN sed -i "s#PATH=#PATH=${PREFIX}/bin#g" "${DESTDIR}/etc/crio/crio.conf"
-RUN cat "${PREFIX}/lib/systemd/system/cri-o.service"
-RUN cat "${DESTDIR}/etc/crio/crio.conf"
-RUN cat "${DESTDIR}/etc/crio/crio.conf"  | grep '/usr/local'
+RUN cd "${DESTDIR}" && tree
 
 FROM scratch
 WORKDIR /
-COPY --from=builder "${DESTDIR}" .
+COPY --from=builder "/opt/crio" .
