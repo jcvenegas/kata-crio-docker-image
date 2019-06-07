@@ -30,8 +30,6 @@ RUN cp /usr/local/go/bin/go /usr/bin/go
 
 ARG CRIO_VERSION=v1.14.2
 ARG DESTDIR=/opt/crio
-# PREFIX should include destdir  in crio Makefile :(
-ARG PREFIX=${DESTDIR}/usr
 
 RUN git clone https://github.com/cri-o/cri-o.git
 WORKDIR /cri-o
