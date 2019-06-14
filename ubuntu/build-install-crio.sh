@@ -29,8 +29,8 @@ make install.config
 make install.systemd
 
 #Configure
-echo "Copy containers policy from CRI-O repo to $containers_config_path"
 containers_config_path="${DESTDIR}/etc/containers"
+echo "Copy containers policy from CRI-O repo to $containers_config_path"
 sudo mkdir -p "${containers_config_path}"
 sudo install -m0444 test/policy.json "${containers_config_path}"
 cat "${containers_config_path}/policy.json"
